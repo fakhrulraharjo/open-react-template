@@ -47,7 +47,7 @@ export const Coupon:React.FC<cardValue> = ({description,redeemLink,startDate,end
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    let apiLink = process.env.NEXT_PUBLIC_API_URL ||  `http://ubuntulab`
+    let apiLink = "https://api.mulyacitaindonesia.com/"
     description = description || "Free OG"
     var getLink = id ? `/api/v2/assigncoupon/redeem/${id}` : `/api/v2/assigncoupon/redeem/1`
     var convstartDate = startDate ? new Date(startDate).toLocaleDateString() : "22/22/2022"
@@ -64,7 +64,7 @@ export const Coupon:React.FC<cardValue> = ({description,redeemLink,startDate,end
         console.log("clicked")
         if (!getLink) return 
         setBtnText("used")
-        axios({baseURL: "http://ubuntulab:7790",url: getLink})
+        axios({baseURL: apiLink,url: getLink})
         .then(res => {
             setBtnText("used")
             let text = id ? id.toString() : ""

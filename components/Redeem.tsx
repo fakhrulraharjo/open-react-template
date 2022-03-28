@@ -56,17 +56,15 @@ export const Redeem:React.FC<props> = ({}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  let apiLink = process.env.NEXT_PUBLIC_API_URL ||  `http://ubuntulab`
+  let apiLink = "https://api.mulyacitaindonesia.com/"
   var getDataUrl = apiLink ? `/api/v2/assigncoupon?key=customer&search=${searchInput}` : `/api/v2/assigncoupon/redeem/1`
   console.log(`API URL : ${process.env.NEXT_PUBLIC_API_URL}`)
 
   const handleSearchButton = (reason:any) =>{
     //console.log(reason)
-    if (reason === 'clickaway') {
-      return;
-    }
+    //console.log("res.data")
     setClick(prevClick => !prevClick)
-    axios({baseURL : "http://ubuntulab:7790",url: getDataUrl})
+    axios({baseURL : apiLink,url: getDataUrl})
     .then(res => {
       //console.log(res.data)
       setDate(res.data)
